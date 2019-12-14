@@ -54,31 +54,33 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener{onEndGame()}
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = this
+//        binding.correctButton.setOnClickListener { onCorrect() }
+//        binding.skipButton.setOnClickListener { onSkip() }
+//        binding.endGameButton.setOnClickListener{onEndGame()}
         updateScoreText()
         updateWordText()
         return binding.root
 
-        viewModel.score.observe(this, Observer { newScore -> binding.scoreText.text = newScore.toString()})
-        viewModel.word.observe(this, Observer { newWord -> binding.wordText.text = newWord })
+//        viewModel.score.observe(this, Observer { newScore -> binding.scoreText.text = newScore.toString()})
+//        viewModel.word.observe(this, Observer { newWord -> binding.wordText.text = newWord })
     }
 
 
     /** Methods for buttons presses **/
 
-    private fun onSkip() {
-        viewModel.onSkip()
-        updateWordText()
-        updateScoreText()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-        updateScoreText()
-        updateWordText()
-    }
+//    private fun onSkip() {
+//        viewModel.onSkip()
+//        updateWordText()
+//        updateScoreText()
+//    }
+//
+//    private fun onCorrect() {
+//        viewModel.onCorrect()
+//        updateScoreText()
+//        updateWordText()
+//    }
 
 
     /** Methods for updating the UI **/
@@ -91,9 +93,9 @@ class GameFragment : Fragment() {
         binding.scoreText.text = viewModel.score.value.toString()
     }
 
-    private fun onEndGame(){
-        gameFinished()
-    }
+//    private fun onEndGame(){
+//        gameFinished()
+//    }
 
     private fun gameFinished(){
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
